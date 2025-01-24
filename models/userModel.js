@@ -1,8 +1,6 @@
 import user from "../schemas/userSchema.js";
 
 class userModel {
-    constructor () {}
-
     async find () {
         try {
             return await user.find();

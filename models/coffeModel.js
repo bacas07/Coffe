@@ -1,8 +1,6 @@
 import coffe from "../schemas/coffeSchema.js";
 
 class coffeModel {
-    constructor () {}
-
     async find () {
         try {
             return await coffe.find();

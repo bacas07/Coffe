@@ -66,6 +66,19 @@ class userController {
         }
     }
 
+    async deleteById (req, res) {
+            try {
+                const { id } = req.params;
+                const deleted_user = await userModel.deleteById(id);
+                if (!deleted_user) {
+                    return res.status(404).json({ error: 'User not found' });
+                }
+                return res.status(204).json({ message: 'Deleted user' });
+            } catch {
+                return res.status(500).json({ error: 'Error deleting user: ' })
+            }
+        }
+
     
 }
 
