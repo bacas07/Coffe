@@ -4,7 +4,7 @@ import { verifyToken, permit } from '../utils/auth.js';
 
 const coffeeRoutes = express.Router();
 
-coffeeRoutes.get('/', verifyToken, permit('user', 'admin'), (req, res) => coffeeController.findAll(req, res));
+coffeeRoutes.get('/', /* verifyToken, permit('user', 'admin'),*/ (req, res) => coffeeController.findAll(req, res));
 coffeeRoutes.get('/:id', verifyToken, permit('user', 'admin'), (req, res) => coffeeController.findById(req, res));
 
 coffeeRoutes.post('/', verifyToken, permit('admin'), (req, res) => coffeeController.create(req, res));
