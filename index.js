@@ -13,6 +13,9 @@ app.use(bodyParser.json());
 
 connectDB();
 
+app.get('/', (req, res) => {;
+    res.send('Hello  World :)');
+})
 app.use('/coffes', coffeRoutes);
 app.use('/users', userRoutes);
 
