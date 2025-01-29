@@ -4,6 +4,7 @@ import connectDB from './config/connectDB.js';
 import middleware from './config/middleware.js';
 import coffeRoutes from './routes/coffeRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import { verifyApiKey } from './utils/auth.js';
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use(bodyParser.json());
 
 connectDB();
 
-app.get('/', (req, res) => {;
+app.get('/', verifyApiKey, (req, res) => {
     res.send('Hello  World :)');
 })
 app.use('/coffes', coffeRoutes);
