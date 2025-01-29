@@ -1,6 +1,6 @@
 import express from "express";
 import userController from "../controllers/userController.js";
-import { verifyToken, permit } from "../utils/auth.js"
+import { verifyToken, permit, verifyApiKey } from "../utils/auth.js"
 
 const userRoutes = express.Router();
 
