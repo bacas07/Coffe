@@ -39,45 +39,191 @@ Inicia el servidor: npm start El servidor se ejecutará en http://localhost:3000
 
 ##### GET /coffees:
 Recupera todos los elementos de café. 
-- Middleware: ``verifyApiKey``
-- Controlador: ``coffeeController.findAll``
+- Middleware: ``verifyApiKey``.
+- Controlador: ``coffeeController.findAll``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        none
+    }
+    ```
+    - res: 
+    ```json
+    {
+        "_id": "coffeID",
+        "name": "coffeName",
+        "description": "coffeDescription",
+        "price": 15000,
+        "available": true
+    }
+    ```
+    - status: ``200``.
 
 ##### GET /coffees/:id:
 Recupera un elemento de café por ID. 
-- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('user', 'admin')`` 
-- Controlador: ``coffeeController.findById``
+- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('user', 'admin')``.
+- Controlador: ``coffeeController.findById``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        "id": "coffeID"
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "_id": "coffeID",
+        "name": "coffeName",
+        "description": "coffeDescription",
+        "price": 15000,
+        "available": true
+    }
+    ```
+    - status: ``200``, ``404``.
 
 ##### POST /coffees: 
 Crea un nuevo elemento de café. 
-- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')`` 
-- Controlador: ``coffeeController.create``
+- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')``. 
+- Controlador: ``coffeeController.create``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        "name": "coffeName",
+        "description": "coffeDescription",
+        "price": 15000,
+        "available": true
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "_id": "coffeID",
+        "name": "coffeName",
+        "description": "coffeDescription",
+        "price": 15000,
+        "available": true
+    }
+    ```
+    - status: ``201``, ``500``.
 
 ##### PUT /coffees/:id: 
 Actualiza un elemento de café por ID. 
-- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')`` 
-- Controlador: ``coffeeController.updateById``
+- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')``. 
+- Controlador: ``coffeeController.updateById``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        "name": "updatedCoffeName",
+        "description": "updatedCoffeDescription",
+        "price": 15000,
+        "available": false
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "_id": "coffeID",
+        "name": "updatedCoffeName",
+        "description": "updatedCoffeDescription",
+        "price": 15000,
+        "available": false
+    }
+    ```
+    - status: ``200``, ``404``, ``500``.
 
 ##### DELETE /coffees/:id: 
 Elimina un elemento de café por ID. 
-- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')`` 
-- Controlador: ``coffeeController.deleteById``
+- Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')``.
+- Controlador: ``coffeeController.deleteById``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        "id": "coffeID"
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "message": "Deleted Coffe"
+    }
+    ```
+    - status: ``204``, ``404``, ``500``.
 
 #### 👥 Rutas de Usuarios:
 
 ##### POST /users/register: 
 Registra un nuevo usuario. 
-- Middleware: ``verifyApiKey`` 
-- Controlador: ``userController.register``
+- Middleware: ``verifyApiKey``.
+- Controlador: ``userController.register``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        "name": "userName",
+        "email": "userEmail",
+        "password": "userPassword",
+        "role": "user"
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "message": "User created"
+    }
+    ```
+    - status: ``201``, ``401``, ``403``, ``500``.
 
 ##### POST /users/login: 
 Inicia sesión de usuario. 
-- Middleware: ``verifyApiKey`` 
-- Controlador: ``userController.login``
+- Middleware: ``verifyApiKey``. 
+- Controlador: ``userController.login``.
+- HTPP:
+    - req: 
+    ```json
+    {
+        "email": "userEmail",
+        "password": "userPassword"
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "message": "User logged",
+        "token": "jwtToken"
+    }
+    ```
+    - status: ``200``, ``400``, ``401``, ``500``.
 
 ##### DELETE /users/:id: 
 Elimina un usuario por ID. 
 - Middleware: ``verifyApiKey``, ``verifyToken``, ``permit('admin')`` 
 - Controlador: ``userController.deleteById``
+- HTPP:
+    - req: 
+    ```json
+    {
+        ""id": "userID"
+    }
+
+    ```
+    - res: 
+    ```json
+    {
+        "message": "Deleted user"
+    }
+    ```
+    - status: ``204``, ``404``, ``500``.
 
 ## 🔒 Seguridad: 
 La aplicación implementa varias medidas de seguridad:
