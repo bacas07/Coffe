@@ -45,7 +45,7 @@ Recupera todos los elementos de café.
     - req: 
     ```json
     {
-        none
+        "none"
     }
     ```
     - res: 
@@ -213,7 +213,7 @@ Elimina un usuario por ID.
     - req: 
     ```json
     {
-        ""id": "userID"
+        "id": "userID"
     }
 
     ```
