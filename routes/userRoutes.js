@@ -4,9 +4,9 @@ import { verifyToken, permit, verifyApiKey } from "../utils/auth.js"
 
 const userRoutes = express.Router();
 
-userRoutes.get('/all', verifyApiKey, (req, res) => userController.findAll(req, res));
+userRoutes.get('/all', verifyApiKey, verifyToken, permit('admin'), (req, res) => userController.findAll(req, res));
 
-userRoutes.get('/:id', verifyApiKey, (req, res) => userController.findByID(req, res));
+userRoutes.get('/:id', verifyApiKey, verifyToken, permit('admin'), (req, res) => userController.findByID(req, res));
 
 userRoutes.post('/register', verifyApiKey, (req, res) => userController.register(req, res));
 
