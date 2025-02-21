@@ -12,7 +12,7 @@ class userController {
             const users = await userModel.find();
             return res.status(200).json(users);
         } catch (e) {
-            return res.status(500).json({ message: 'Error finding all users' });
+            return res.status(500).json({ error: 'Error finding all users' });
         }
     }
 
@@ -27,7 +27,7 @@ class userController {
 
             return res.status(200).json(user);
         } catch (e) {
-            
+            return res.status(500).json({ error: 'Error finding user' });
         }
     }
 
