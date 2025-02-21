@@ -1,0 +1,111 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import ProductsList from "../components/ProductsList.astro";
+import { getCoffees } from "../lib/api";
+const products = await getCoffees();
+
+const productsAsc = products.sort((a, b) => b.price - a.price).slice(0, 3);
+---
+
+<Layout title="CaféDelight - Premium Coffee Shop">
+  <Hero />
+  <ProductsList products={productsAsc} />
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12"
+    >
+      <div class="md:w-1/2" data-aos="fade-right">
+        <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">
+          At CaféDelight, every cup of coffee tells a story. Our journey started
+          with a passion for exceptional coffee and evolved into a commitment to
+          bringing you the finest beans from around the world.
+        </p>
+        <p class="text-gray-600 leading-relaxed">
+          We carefully select and roast our beans to perfection, ensuring that
+          every sip is an experience worth savoring. Our dedication to quality
+          and sustainability sets us apart.
+        </p>
+      </div>
+      <div class="md:w-1/2 relative h-96" data-aos="fade-left">
+        <img
+          src="/coffee-image.webp"
+          alt="Coffee brewing process"
+          class="w-full h-full object-cover rounded-lg shadow-lg"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-gray-900 mb-12">Get in Touch</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="text-left space-y-6" data-aos="fade-up">
+          <h3 class="text-2xl font-bold text-gray-800">Visit Our Shop</h3>
+          <p class="text-gray-600">
+            Come experience our coffee in person. We'd love to serve you!
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-center text-gray-600">
+              <span class="mr-3">📍</span> 123 Coffee Street, Coffee City, CF 12345
+            </li>
+            <li class="flex items-center text-gray-600">
+              <span class="mr-3">📞</span> (123) 456-7890
+            </li>
+            <li class="flex items-center text-gray-600">
+              <span class="mr-3">✉️</span> info@cafedelight.com
+            </li>
+          </ul>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <form class="bg-white p-8 rounded-lg shadow-lg">
+            <div class="-space-y-px">
+              <div>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Your Name"
+                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-coffee-light focus:border-coffee-light focus:z-10 sm:text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email Address"
+                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-coffee-light focus:border-coffee-light focus:z-10 sm:text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="Your Message"
+                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-coffee-light focus:border-coffee-light focus:z-10 sm:text-sm"
+                  required></textarea>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full mt-6 bg-coffee-light text-white px-6 py-3 rounded-md hover:bg-coffee-dark transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
