@@ -7,7 +7,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class userController {
-    async 
+    async findAll (req, res) {
+        try {
+            const users = await userModel.find();
+            return res.status(200).json(users);
+        } catch (e) {
+            return res.status(500).json('');
+        }
+    }
+
+    async findByID () {
+
+    }
 
     async register (req, res) {
         try {
