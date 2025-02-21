@@ -23,14 +23,7 @@ export const getCoffees = async (): Promise<Coffee[]> => {
 
 export const getCoffeById = async (id: string): Promise<Coffee | null> => {
     try {
-        const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjM4ZDI0MjQ3YmQzNjRhMTQyNzM5MyIsIm5hbWUiOiJrZGVhdmlsYSIsImVtYWlsIjoia2RkZWF2aWxhM0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDAxMDEzNDUsImV4cCI6MTc0MDEwNDk0NX0.NR4-KOARXaBhZaIZIJf-Z2w40NF2Qk0z2vI8Ov6i5uI";
-
-        const response = await API.get<Coffee>(`/coffes/${id}`, {
-            headers: {
-                "Authorization": `Bearer ${TOKEN}`
-            }
-        }
-        );
+        const response = await API.get<Coffee>(`/coffes/${id}`);
         const data = await response.data;
         return data;
 
