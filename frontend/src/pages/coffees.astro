@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductsList from "../components/ProductsList.astro";
+import { getCoffees } from "../lib/api";
+const products = await getCoffees();
+---
+
+<Layout title="CaféDelight - Premium Coffee Shop | Products">
+    <section class="py-16">
+        <ProductsList products={products} />
+    </section>
+</Layout>
