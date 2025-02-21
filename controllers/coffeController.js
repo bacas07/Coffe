@@ -6,18 +6,19 @@ class coffeController {
             const coffes = await coffeModel.find();
             return res.status(200).json(coffes);
         } catch (e) {
-            console.error('error: ', e);
             return res.status(500).json({ error: 'Error finding coffes' })
         }
     }
 
     async findById (req, res) {
         try {
-            const { id } = req.params
+            const { id } = req.params;
             const coffe = await coffeModel.findById(id);
+
             if (!coffe) {
                 return res.status(404).json({ error: 'Coffe not found' });
             }
+
             return  res.status(200).json(coffe);
         } catch (e) {
             return res.status(500).json({ error: 'Error finding coffe' });

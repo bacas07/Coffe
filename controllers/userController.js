@@ -12,13 +12,23 @@ class userController {
             const users = await userModel.find();
             return res.status(200).json(users);
         } catch (e) {
-            console.error('Error: ', e);
             return res.status(500).json({ message: 'Error finding all users' });
         }
     }
 
-    async findByID () {
+    async findByID (req, res) {
+        try {
+            const { id } = req.params;
+            const user = await userModel.findById(id);
 
+            if (!user) {
+                return res.status(404).json({ error: 'User doesnt exist' });
+            }
+
+            return res.status(200).json(user);
+        } catch (e) {
+            
+        }
     }
 
     async register (req, res) {
@@ -73,25 +83,22 @@ class userController {
             return res.status(200).json({ message: 'User logged', token });
 
         } catch (e) {
-            console.error(e)
             return res.status(500).json({ error: 'Error loggining user' })
         }
     }
 
     async deleteById (req, res) {
-            try {
-                const { id } = req.params;
-                const deleted_user = await userModel.deleteById(id);
-                if (!deleted_user) {
-                    return res.status(404).json({ error: 'User not found' });
-                }
-                return res.status(204).json({ message: 'Deleted user' });
-            } catch {
-                return res.status(500).json({ error: 'Error deleting user: ' })
+        try {
+            const { id } = req.params;
+            const deleted_user = await userModel.deleteById(id);
+            if (!deleted_user) {
+                return res.status(404).json({ error: 'User not found' });
             }
+            return res.status(204).json({ message: 'Deleted user' });
+        } catch {
+            return res.status(500).json({ error: 'Error deleting user: ' })
         }
-
-    
+    }
 }
 
 export default new userController();
