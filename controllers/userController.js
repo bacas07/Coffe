@@ -12,7 +12,8 @@ class userController {
             const users = await userModel.find();
             return res.status(200).json(users);
         } catch (e) {
-            return res.status(500).json('');
+            console.error('Error: ', e);
+            return res.status(500).json({ message: 'Error finding all users' });
         }
     }
 
