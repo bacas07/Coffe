@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Coffee } from "../types/coffee";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://coffestore-8d5442930e01.herokuapp.com/",
     headers: {
         "Content-Type": "application/json",
         "x-api-key": "ARC4M"
