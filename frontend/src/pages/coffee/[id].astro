@@ -1,19 +1,11 @@
 ---
+export const prerender = false;
 import Layout from "../../layouts/Layout.astro";
-import { getCoffees, getCoffeById } from "../../lib/api";
+import { getCoffeById } from "../../lib/api";
 
 const { id } = Astro.params;
-console.log(id);
 
-export async function getStaticPaths() {
-    const coffees = await getCoffees();
-
-    return coffees.map((coffee) => ({
-        params: { id: coffee._id },
-    }));
-}
-
-const coffee = await getCoffeById(id);
+const coffee = await getCoffeById(id as string);
 
 if (!coffee) {
     return new Response(null, {
