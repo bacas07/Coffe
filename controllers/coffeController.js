@@ -1,8 +1,8 @@
 import coffeModel from "../models/coffeModel.js";
 
 class coffeController {
-    constructor () {}
 
+    
     async findAll (req, res) { 
         try {
             const coffes = await coffeModel.find();

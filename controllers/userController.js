@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class userController {
-    constructor () {}
+    async 
 
     async register (req, res) {
         try {
